@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Response
 import httpx, os
 
 app = FastAPI()
@@ -6,7 +6,7 @@ app = FastAPI()
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHAT_IDS = os.environ["CHAT_IDS"].split(",")
 
-@app.get("/health")
+@app.api_route("/health", methods=["GET", "HEAD"])
 async def health():
     return {"status": "ok"}
 

@@ -6,6 +6,10 @@ app = FastAPI()
 BOT_TOKEN = os.environ["BOT_TOKEN"]
 CHAT_IDS = os.environ["CHAT_IDS"].split(",")
 
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
+
 @app.post("/webhook")
 async def webhook(request: Request):
     message = (await request.body()).decode("utf-8")
